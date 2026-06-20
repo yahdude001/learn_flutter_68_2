@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:learn_flutter_68_2/model/person.dart';
 
+import 'package:learn_flutter_68_2/main.dart';
+
 class AddForm extends StatefulWidget {
   const AddForm({super.key});
 
@@ -17,14 +19,12 @@ class _AddFormState extends State<AddForm> {
 
   @override 
   Widget build(BuildContext context){
-    return MaterialApp(
-      title: "Add Person",
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Add Person"),
-          backgroundColor: Colors.pinkAccent,
-          centerTitle: true,
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Add Person"),
+        backgroundColor: Colors.pinkAccent,
+        centerTitle: true,
+      ),
         body: Padding(
           padding: EdgeInsets.all(20.0),
           // child: Column(
@@ -93,7 +93,7 @@ class _AddFormState extends State<AddForm> {
                 ),
                 DropdownButtonFormField<Job>(
                   decoration: InputDecoration(labelText: "Job"),
-                  value: _job,
+                  initialValue: _job,
                   items: Job.values
                       .map((key) => DropdownMenuItem<Job>(
                             value: key,
@@ -117,7 +117,7 @@ class _AddFormState extends State<AddForm> {
                         people.add(Person(name: _name, age: _age, job: _job!));
                       });
 
-                      _formKey.currentState!.reset();
+                      Navigator.pop(context);
                     }
                   },
                   style: FilledButton.styleFrom(
@@ -133,7 +133,6 @@ class _AddFormState extends State<AddForm> {
             ),
           ),
         ),
-      ),
     );
   }
 }
